@@ -25,8 +25,7 @@
 					<tbody>
 						<% @users.each do |user| %>
 						<tr>
-							<td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, format: 'jpeg',
- fallback: "no-image-mini.jpg") %></td>
+							<td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, format: 'jpeg',fallback: "no-image-mini.jpg") %></td>
 							<td style><%= user.name%></td>
 							<td style><%= link_to "Show", user, class: "user_#{user.id}" %></td>
 						</tr>
