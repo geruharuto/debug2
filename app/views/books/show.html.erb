@@ -47,7 +47,7 @@
 								<% end %>
 							</td>
 
-							<td style><%= "#{@book.book_comments.count} コメント" %>
+							<td style><%= "#{@book_find.book_comments.count} コメント" %>
 							<% if current_user.id == @book_find.user_id %>
 								<td><%= link_to "Edit",edit_book_path(@book_find), class: "btn-sm btn-success edit_book_#{@book.id}" %></td>
 								<td><%= link_to "Destroy", book_path, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book.id}" %></td>
@@ -59,8 +59,10 @@
 							<%= attachment_image_tag(comment.user, :profile_image, :fill, 100, 100, format: 'jpeg',fallback: "no-image-mini.jpg") %>
 							<td><%= comment.user.name %></td>
 							<td><%= comment.comment %></td>
-							<td><%= link_to "Destroy", book_book_comment_path(id: comment.id, book_id: comment.book_id), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book.id}" %></td>
-							<br>
+							<% if current_user.id == comment.user_id %>
+								<td><%= link_to "Destroy", book_book_comment_path(book_id: comment.book_id, id: comment.id), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book.id}" %></td>
+							<% end %>
+								<br>
 							<br>
 						<% end %>
 					</tr>
