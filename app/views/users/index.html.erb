@@ -27,6 +27,9 @@
 						<tr>
 							<td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, format: 'jpeg',fallback: "no-image-mini.jpg") %></td>
 							<td style><%= user.name%></td>
+  							<td><%= link_to "フォロー数 #{user.followings.count}", follows_user_path(user) %></td>
+							<td><%= link_to "フォロワー数　#{user.followers.count}", followers_user_path(user) %></td>
+							<td style><%= render "relationship/follow_button", user: user %></td>
 							<td style><%= link_to "Show", user, class: "user_#{user.id}" %></td>
 						</tr>
 						<% end %>

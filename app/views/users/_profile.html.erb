@@ -6,13 +6,23 @@
 			<th>name</th>
 			<th><%= user.name %></th>
 		</tr>
-
 		<tr>
 			<th>introduction</th>
 			<th><%= user.introduction %></th>
 		</tr>
+		<tr>
+			<th>follow</th>
+			<th><%= link_to user.followings.count, follows_user_path(user) %></th>
+		</tr>
+		<tr>
+			<th>follower</th>
+			<th><%= link_to user.followers.count, followers_user_path(user) %></th>
+		</tr>
+
 </table>
 
 <div class="row">
 	<%= link_to '',edit_user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_#{user.id}" %>
 </div>
+
+<%= render "relationship/follow_button", user: @user %>
